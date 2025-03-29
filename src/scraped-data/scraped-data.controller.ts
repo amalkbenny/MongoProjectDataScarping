@@ -25,41 +25,41 @@ export class ScrapedDataController {
     return this.scrapedDataService.create(createScrapedDataDto);
   }
 
-  @Get()
-  @ApiOperation({ summary: 'Get all scraped data' })
-  @ApiResponse({ status: 200, description: 'Return all scraped data.' })
-  findAll(): Promise<ScrapedData[]> {
-    return this.scrapedDataService.findAll();
-  }
+  // @Get()
+  // @ApiOperation({ summary: 'Get all scraped data' })
+  // @ApiResponse({ status: 200, description: 'Return all scraped data.' })
+  // findAll(): Promise<ScrapedData[]> {
+  //   return this.scrapedDataService.findAll();
+  // }
 
-  @Get('search')
-  @ApiOperation({ summary: 'Search scraped data by tags' })
-  @ApiResponse({ status: 200, description: 'Return scraped data matching the tags.' })
-  findByTags(@Query('tags') tags: string[]): Promise<ScrapedData[]> {
-    return this.scrapedDataService.findByTags(tags);
-  }
+  // @Get('search')
+  // @ApiOperation({ summary: 'Search scraped data by tags' })
+  // @ApiResponse({ status: 200, description: 'Return scraped data matching the tags.' })
+  // findByTags(@Query('tags') tags: string[]): Promise<ScrapedData[]> {
+  //   return this.scrapedDataService.findByTags(tags);
+  // }
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Get scraped data by id' })
-  @ApiResponse({ status: 200, description: 'Return the scraped data.' })
-  findOne(@Param('id') id: string): Promise<ScrapedData> {
-    return this.scrapedDataService.findOne(id);
-  }
+  // @Get(':id')
+  // @ApiOperation({ summary: 'Get scraped data by id' })
+  // @ApiResponse({ status: 200, description: 'Return the scraped data.' })
+  // findOne(@Param('id') id: string): Promise<ScrapedData> {
+  //   return this.scrapedDataService.findOne(id);
+  // }
 
-  @Patch(':id')
-  @ApiOperation({ summary: 'Update scraped data' })
-  @ApiResponse({ status: 200, description: 'The scraped data has been successfully updated.' })
-  update(
-    @Param('id') id: string,
-    @Body() updateScrapedDataDto: CreateScrapedDataDto,
-  ): Promise<ScrapedData> {
-    return this.scrapedDataService.update(id, updateScrapedDataDto);
-  }
+  // @Patch(':id')
+  // @ApiOperation({ summary: 'Update scraped data' })
+  // @ApiResponse({ status: 200, description: 'The scraped data has been successfully updated.' })
+  // update(
+  //   @Param('id') id: string,
+  //   @Body() updateScrapedDataDto: CreateScrapedDataDto,
+  // ): Promise<ScrapedData> {
+  //   return this.scrapedDataService.update(id, updateScrapedDataDto);
+  // }
 
-  @Delete(':id')
-  @ApiOperation({ summary: 'Delete scraped data' })
-  @ApiResponse({ status: 200, description: 'The scraped data has been successfully deleted.' })
-  remove(@Param('id') id: string): Promise<ScrapedData> {
-    return this.scrapedDataService.remove(id);
-  }
+  // @Delete(':id')
+  // @ApiOperation({ summary: 'Delete scraped data' })
+  // @ApiResponse({ status: 200, description: 'The scraped data has been successfully deleted.' })
+  // remove(@Param('id') id: string): Promise<ScrapedData> {
+  //   return this.scrapedDataService.remove(id);
+  // }
 } 

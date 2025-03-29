@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { MasterChecks, MasterChecksDocument } from './schemas/master-checks.schema';
@@ -12,13 +12,22 @@ export class MasterChecksService {
   ) {}
 
   async create(createMasterChecksDto: CreateMasterChecksDto): Promise<MasterChecks> {
-
     if(createMasterChecksDto) {
       const newDate = new Date();
       newDate.setDate(newDate.getDate() - createMasterChecksDto.timeFrame);
-      const dataFound = await this.masterChecksModel.findOne({job: createMasterChecksDto.job, country: createMasterChecksDto.country, searchTerm: createMasterChecksDto.searchTerm, scrapedAt: {$gte: newDate} });
+      const dataFound = await this.masterChecksModel.findOne({
+        job: createMasterChecksDto.job, 
+        country: createMasterChecksDto.country, 
+        searchTerm: createMasterChecksDto.searchTerm, 
+        scrapedAt: {$gte: newDate}
+      });
+      
       if(dataFound) {
-        throw new Error('Data already exists');
+        throw new HttpException({
+          status: HttpStatus.CONFLICT,
+          error: 'Data already exists for this job, country, and search term within the specified time frame',
+          timestamp: new Date().toISOString()
+        }, HttpStatus.CONFLICT);
       }
     }
 
